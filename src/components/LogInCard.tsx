@@ -6,8 +6,10 @@ export function LogInCard() {
   const { setToggle, loginUserwithGmail } = useAuth();
 
   const responseGoogle = (response: any) => {
-    setToggle(false);
-    return loginUserwithGmail(response.tokenId);
+    if(response.tokenId){
+      setToggle(false);
+      return loginUserwithGmail(response.tokenId);
+    }
   };
 
   return (
