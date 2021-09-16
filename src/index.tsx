@@ -2,11 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { ChakraProvider } from "@chakra-ui/react";
 import reportWebVitals from './reportWebVitals';
+import { QuizProvider, AuthProvider } from "./context/index";
+import { extendTheme, ThemeConfig, ColorModeScript } from "@chakra-ui/react";
+import { BrowserRouter as Router } from "react-router-dom";
+
+
+
+const config : ThemeConfig = {
+  useSystemColorMode: false,
+  initialColorMode: "dark",
+}
+
+const theme = extendTheme({ config });
+
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <ChakraProvider theme={theme}>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <AuthProvider>
+          <QuizProvider>
+            <App />
+          </QuizProvider>
+        </AuthProvider>
+      </ChakraProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
