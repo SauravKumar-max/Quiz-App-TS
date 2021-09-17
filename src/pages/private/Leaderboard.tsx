@@ -1,7 +1,7 @@
-import { Container, Spinner, Box, useMediaQuery } from "@chakra-ui/react";
+import { Container, Spinner, Box } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { LeaderBoardTable, MobileLeaderBoardTable } from "../../components";
+import { LeaderBoardTable } from "../../components";
 
 export type UsersScores = {
   _id: string;
@@ -14,7 +14,6 @@ export type UsersScores = {
 };
 
 export function Leaderboard(): JSX.Element {
-  const [isLargerThan580] = useMediaQuery("(min-width: 580px)");
   const [userScores, setScores] = useState([] as UsersScores[]);
   const [spinner, setSpinner] = useState(false);
   const sortedScores = getSortedScores();
@@ -66,13 +65,9 @@ export function Leaderboard(): JSX.Element {
             borderRight="solid 1px rgb(45, 55, 72)"
             borderTop="solid 1px rgb(45, 55, 72)"
           >
-            {
-              isLargerThan580 ? (
-                <LeaderBoardTable sortedScores={sortedScores} />
-              ) : (
-                <MobileLeaderBoardTable sortedScores={sortedScores} />
-              )
-            }
+            <LeaderBoardTable 
+              sortedScores={sortedScores} 
+            />
           </Container>
         </>
       )}
