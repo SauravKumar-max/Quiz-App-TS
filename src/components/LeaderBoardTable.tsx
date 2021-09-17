@@ -1,61 +1,57 @@
-import {
-    Table,
-    Thead,
-    Tr,
-    Th,
-    Tbody,
-    Td,
-  } from "@chakra-ui/react";
+import { Grid, GridItem, Box } from "@chakra-ui/react";
 import { UsersScores } from "../pages/private/Leaderboard";
 
 
-export function LeaderBoardTable({ sortedScores }: { sortedScores: UsersScores[] } ){
-    return (
-        <Table w="100%" variant="simple">
-            <Thead>
-              <Tr>
-                
-                <Th borderColor="rgb(45, 55, 72)" textAlign="center">
-                  Rank
-                </Th>
-                <Th borderColor="rgb(45, 55, 72)" textAlign="center">
-                  Player
-                </Th>
-                <Th borderColor="rgb(45, 55, 72)" textAlign="center">
-                  Astrnomy
-                </Th>
-                <Th borderColor="rgb(45, 55, 72)" textAlign="center">
-                  Science
-                </Th>
-                <Th borderColor="rgb(45, 55, 72)" textAlign="center">
-                  Friends
-                </Th>
-              </Tr>
-            </Thead>
+export function LeaderBoardTable({ sortedScores }: { sortedScores: UsersScores[] }){
+    return(
+        <Grid
+            w="100%"
+            h="fit-content"
+            templateColumns="repeat(1, 1fr)"
+        >
+            <GridItem 
+                w="100%" 
+                display="flex" 
+                alignItems="center" 
+                justifyContent="space-around"
+                color="#a0aec0"
+                borderBottom="solid 1px #2d3748"
+                py="0.6rem"
+                fontSize="0.8rem" 
+                fontWeight="bold"
+                textAlign="center"
+            >
+                <Box w="20%"> RANK </Box>
+                <Box w="30%"> PLAYER </Box>
+                <Box w="25%"> ASTRNOMY	</Box>
+                <Box w="25%"> SCIENCE </Box>
+                <Box w="25%"> FRIENDS </Box>
+            </GridItem>
 
-            <Tbody>
-              {sortedScores.map((user:UsersScores, index:number) => {
-                return (
-                  <Tr key={user._id}>
-                    <Td borderColor="rgb(45, 55, 72)" textAlign="center">
-                      {index + 1}
-                    </Td>
-                    <Td borderColor="rgb(45, 55, 72)" textAlign="center">
-                      {user.name}
-                    </Td>
-                    <Td borderColor="rgb(45, 55, 72)" textAlign="center">
-                      {user.score.astronomy}
-                    </Td>
-                    <Td borderColor="rgb(45, 55, 72)" textAlign="center">
-                      {user.score.science}
-                    </Td>
-                    <Td borderColor="rgb(45, 55, 72)" textAlign="center">
-                      {user.score.friends}
-                    </Td>
-                  </Tr>
-                )
-              })}
-            </Tbody>
-          </Table>
+            {
+                sortedScores.map((user:UsersScores, index:number) => {
+                    return (
+                        <GridItem 
+                            key="user._id"
+                            w="100%" 
+                            display="flex" 
+                            alignItems="center" 
+                            justifyContent="space-around"
+                            borderBottom="solid 1px #2d3748"
+                            py="0.6rem"
+                            fontSize="1rem" 
+                            textAlign="center"
+                        >
+                            <Box w="20%"> { index+1 } </Box>
+                            <Box w="30%"> { user.name } </Box>
+                            <Box w="25%"> { user.score.astronomy }	</Box>
+                            <Box w="25%"> { user.score.science } </Box>
+                            <Box w="25%"> { user.score.friends } </Box>
+                        </GridItem>
+                      
+                    )
+                })
+            }
+        </Grid>
     )
 }
