@@ -49,7 +49,7 @@ export function Navbar(): JSX.Element {
       >
         <Box p="2.5" ml="2">
           <Heading size="lg" cursor="pointer" onClick={() => navigate("/")}>
-            Quizard
+            Quizzard
           </Heading>
         </Box>
         <Spacer />
