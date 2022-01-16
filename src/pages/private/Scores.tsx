@@ -1,10 +1,13 @@
-import { VStack, Text, Box } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { VStack, Text, Box, Button } from "@chakra-ui/react";
 import { useAuth } from "../../context/auth.context";
 import { useQuiz } from "../../context/playQuiz-context";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 export function Scores() {
+  const navigate = useNavigate();
   const { token } = useAuth();
   const { state } = useQuiz();
   const { quizStatus, quizName, score } = state;
@@ -17,6 +20,7 @@ export function Scores() {
       item.questionAsked.options?.find((option) => option.isCorrect)?._id
   );
   const correctAnswers = checkAnswers.filter((item) => item === true);
+
 
   useEffect(() => {
     (async () => {
@@ -63,10 +67,16 @@ export function Scores() {
           </Text>
           <Text color="red">
             {" "}
-            Incorrect Answers - {checkAnswers.length -
-              correctAnswers.length}{" "}
+            Incorrect Answers - {checkAnswers.length - correctAnswers.length}
           </Text>
         </Box>
+        <Button 
+          colorScheme="purple" 
+          variant="outline" 
+          onClick={() => navigate('/')}
+        >
+          Back To Quiz
+        </Button>
         <Box>
           {quizStatus.map(({ playerAnswer, questionAsked }) => {
             return (
@@ -110,10 +120,6 @@ export function Scores() {
             );
           })}
         </Box>
-        {/* <Button colorScheme="purple" variant="outline" marginBottom="2rem">
-          {" "}
-          Return Home
-        </Button> */}
       </VStack>
     </>
   );
