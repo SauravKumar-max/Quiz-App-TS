@@ -13,7 +13,7 @@ export function QuizList(){
 
     return(
         <VStack my={"5rem"}>
-        <Heading my="1rem" size="2xl" textAlign="center">Welcome to Quizard</Heading>
+        <Heading my="1rem" size="2xl" textAlign="center">Welcome to Quizzard</Heading>
         {
             quiz?.map(({_id, name, image}) => {
                 return (
