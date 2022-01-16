@@ -32,7 +32,7 @@ export function LeaderBoardTable({ sortedScores }: { sortedScores: UsersScores[]
                 sortedScores.map((user:UsersScores, index:number) => {
                     return (
                         <GridItem 
-                            key="user._id"
+                            key={user._id}
                             w="100%" 
                             display="flex" 
                             alignItems="center" 
