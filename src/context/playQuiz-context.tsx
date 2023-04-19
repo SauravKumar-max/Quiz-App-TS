@@ -1,5 +1,17 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
-import { ContextType, Quiz, ServerError, Props, QuizStatus } from "./context.types";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import {
+  ContextType,
+  Quiz,
+  ServerError,
+  Props,
+  QuizStatus,
+} from "./context.types";
 import { quizReducer } from "../reducer/quizReducer";
 import axios, { AxiosError } from "axios";
 
@@ -19,7 +31,7 @@ export const initialState = {
 export async function getQuiz(): Promise<Quiz | ServerError> {
   try {
     const response = await axios.get<Quiz>(
-      "https://quizapp.sauravkumar007.repl.co/quizzes"
+      "https://quizzard-backend.onrender.com/quizzes"
     );
     return response.data;
   } catch (error) {

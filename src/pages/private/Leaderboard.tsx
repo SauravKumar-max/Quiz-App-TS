@@ -22,8 +22,9 @@ export function Leaderboard(): JSX.Element {
     return userScores
       .sort(
         (a, b) =>
-          (b.score.astronomy + b.score.science + b.score.friends) 
-            -
+          b.score.astronomy +
+          b.score.science +
+          b.score.friends -
           (a.score.astronomy + a.score.science + a.score.friends)
       )
       .slice(0, 10);
@@ -33,7 +34,7 @@ export function Leaderboard(): JSX.Element {
     (async () => {
       setSpinner(true);
       try {
-        const api = "https://quizapp.sauravkumar007.repl.co/scores/allscores";
+        const api = "https://quizzard-backend.onrender.com/scores/allscores";
         const response = await axios.get(api);
         setSpinner(false);
         setScores(response.data.allScores);
@@ -65,9 +66,7 @@ export function Leaderboard(): JSX.Element {
             borderRight="solid 1px rgb(45, 55, 72)"
             borderTop="solid 1px rgb(45, 55, 72)"
           >
-            <LeaderBoardTable 
-              sortedScores={sortedScores} 
-            />
+            <LeaderBoardTable sortedScores={sortedScores} />
           </Container>
         </>
       )}

@@ -1,4 +1,13 @@
-import { Box, Text, Button, Table, Tr, Tbody, Td, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Button,
+  Table,
+  Tr,
+  Tbody,
+  Td,
+  Spinner,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/auth.context";
@@ -25,7 +34,7 @@ export function ProfileCard(): JSX.Element {
       if (token) {
         setLoader(true);
         try {
-          const api = "https://QuizApp.sauravkumar007.repl.co/users";
+          const api = "https://quizzard-backend.onrender.com/users";
           const response = await axios.get(api, {
             headers: { authorization: token },
           });
@@ -73,7 +82,7 @@ export function ProfileCard(): JSX.Element {
             alignItems="center"
             justifyContent="center"
           >
-            <Spinner  size="md" color="purple.600" />
+            <Spinner size="md" color="purple.600" />
           </Box>
         ) : (
           <>
@@ -118,15 +127,16 @@ export function ProfileCard(): JSX.Element {
               </Table>
             </Box>
 
-            <Link to="/leaderboard" 
-                style={{
-                  color: "#6932ff", 
-                  fontSize: "0.9rem", 
-                  textDecoration: "underline",
-                }}
-                onClick={() => setToggle(false)}
-              >
-                check leaderboard
+            <Link
+              to="/leaderboard"
+              style={{
+                color: "#6932ff",
+                fontSize: "0.9rem",
+                textDecoration: "underline",
+              }}
+              onClick={() => setToggle(false)}
+            >
+              check leaderboard
             </Link>
 
             <Button

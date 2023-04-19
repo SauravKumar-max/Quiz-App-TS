@@ -8,14 +8,16 @@ import { AuthContextType, UserToken } from "./context.types";
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export function AuthProvider({ children }: Props) {
-  const { isUserLoggedIn, token:savedToken  } = JSON.parse(localStorage?.getItem('login') || '{}') || { isUserLoggedIn: false, token: null };
+  const { isUserLoggedIn, token: savedToken } = JSON.parse(
+    localStorage?.getItem("login") || "{}"
+  ) || { isUserLoggedIn: false, token: null };
   const [login, setLogin] = useState(isUserLoggedIn);
   const [token, setToken] = useState(savedToken);
   const [toggleCard, setToggle] = useState(false);
 
   async function loginUserwithGmail(gmailToken: string): Promise<void> {
     try {
-      const api = "https://QuizApp.sauravkumar007.repl.co/users/signin";
+      const api = "https://quizzard-backend.onrender.com/users/signin";
       const response = await axios.post<UserToken>(api, { gmailToken });
       if (response.status === 200) {
         return loginUser(response.data);
