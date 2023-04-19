@@ -5,7 +5,6 @@ import { useQuiz } from "../../context/playQuiz-context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 export function Scores() {
   const navigate = useNavigate();
   const { token } = useAuth();
@@ -21,12 +20,11 @@ export function Scores() {
   );
   const correctAnswers = checkAnswers.filter((item) => item === true);
 
-
   useEffect(() => {
     (async () => {
       if (token) {
         try {
-          const api = "https://QuizApp.sauravkumar007.repl.co/scores";
+          const api = "https://quizzard-backend.onrender.com/scores";
           await axios.post(
             api,
             { [quizName]: score },
@@ -70,10 +68,10 @@ export function Scores() {
             Incorrect Answers - {checkAnswers.length - correctAnswers.length}
           </Text>
         </Box>
-        <Button 
-          colorScheme="purple" 
-          variant="outline" 
-          onClick={() => navigate('/')}
+        <Button
+          colorScheme="purple"
+          variant="outline"
+          onClick={() => navigate("/")}
         >
           Back To Quiz
         </Button>

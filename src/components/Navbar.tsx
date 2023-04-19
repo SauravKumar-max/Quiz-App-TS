@@ -14,7 +14,6 @@ import { useAuth } from "../context/auth.context";
 import { LogInCard, ProfileCard } from "./index";
 import axios from "axios";
 
-
 export function Navbar(): JSX.Element {
   const [userImage, setImage] = useState("");
   const { colorMode, toggleColorMode } = useColorMode();
@@ -25,7 +24,7 @@ export function Navbar(): JSX.Element {
     (async () => {
       if (token) {
         try {
-          const api = "https://QuizApp.sauravkumar007.repl.co/users";
+          const api = "https://quizzard-backend.onrender.com/users";
           const response = await axios.get(api, {
             headers: { authorization: token },
           });
